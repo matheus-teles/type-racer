@@ -1,0 +1,21 @@
+.MainText
+    font-size: 50px
+    font-family: 'Aleo', serif
+    min-height: 575px
+    overflow: hidden
+    position: relative
+    user-select: none
+    text-align: justify
+    &:after
+        content: " "
+        position: absolute
+        bottom: 0
+        top: 0
+        left: 0
+        right: 0
+        box-shadow: inset 0 -200px 150px -150px white
+    
+    .matched
+        color: #41AC5D
+    .next-word
+        text-decoration: underline
