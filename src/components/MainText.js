@@ -1,5 +1,5 @@
 import React from 'react';
-import StartButton from './StartButton.js';
+import { connect } from "react-redux";
 
 import './MainText.sass';
 
@@ -9,13 +9,9 @@ const MainText = (props) => {
     )
     const nextWord = <span><span className="next-word">{props.sentence[0]}</span><span> </span></span>;
     const afterNextWord = props.sentence.slice(1).join(" ")
-    const handleOnGameStart = () => {
-        props.onGameStart();
-    }
     
     return (
         <div className="MainText">
-            { props.secondsPassed == null ? <StartButton onGameStart={handleOnGameStart} /> : "" }
             { wordsMatchedList }
             { nextWord }
             { afterNextWord }
@@ -23,4 +19,8 @@ const MainText = (props) => {
     );
 }
 
-export default MainText
+const mapStateToProps = (state) => {
+    return { ...state.game }
+}
+
+export default connect(mapStateToProps)(MainText);
