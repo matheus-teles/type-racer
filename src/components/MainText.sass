@@ -1,12 +1,17 @@
 .MainText
     font-size: 50px
     font-family: 'Aleo', serif
-    min-height: 575px
-    overflow: hidden
     position: relative
     user-select: none
     text-align: justify
-    &:after
+    .scrollable-content
+        scroll-behavior: smooth;
+        height: 500px
+        overflow-y: scroll
+        &::-webkit-scrollbar
+            width: 0px
+            background: transparent
+    &:before
         content: " "
         position: absolute
         bottom: 0
@@ -17,5 +22,7 @@
     
     .matched
         color: #41AC5D
+    .unmatched
+        color: red
     .next-word
         text-decoration: underline
