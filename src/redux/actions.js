@@ -18,7 +18,7 @@ export const checkInput = (wordInput) => ({
 export const setSentence = (sentence) => ({
   type: SET_SENTENCE,
   payload: {
-    sentence: sentence[0].quote.split(" ")
+    sentence: sentence.split(" ")
   }
 });
 

@@ -4,19 +4,45 @@ import { connect } from "react-redux";
 import './Timer.sass'
 
 class Timer extends Component {
-    render() {
-        return (
-            <div className="Timer">
-                { this.props.started_at &&
-                <h1>{Math.ceil(60 * this.props.wordsMatched.length / ((Date.now() - this.props.started_at) / 1000))} Wpm</h1>
-            }
-            </div>
-        )
-    }
+	constructor(props) {
+		super(props);
+		this.state = {now: Date.now()}
+	}
+	tick() {
+		this.setState({
+			now: Date.now()
+		})
+	}
+	componentDidMount() {
+		this.interval = setInterval(() => this.tick(), 1000)
+	}
+	render() {
+		const wpm = Math.ceil(60 * this.props.wordsMatched.length / ((this.state.now - this.props.started_at) / 1000))
+		function velocimeter(wpm) {
+			if (wpm <= 0) return 4
+			if (wpm > 100) return 100
+			return wpm * 1.76
+		}
+		const divStyle = {
+			transform: `rotate(${velocimeter(wpm)}deg)`
+		}
+		return (
+			<div className="Timer">
+				{this.props.started_at &&
+					<h1>{wpm} Wpm</h1>
+				}
+				<div className="speedometer">
+					<div className="velocimeter">
+						<div className="pointer" style={divStyle}></div>
+					</div>
+				</div>
+			</div>
+		)
+	}
 }
 
 const mapStateToProps = (state) => {
-    return {  ...state.game }
+	return { ...state.game }
 }
 
 export default connect(mapStateToProps)(Timer);

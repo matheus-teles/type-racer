@@ -1,2 +1,56 @@
 .Timer
-    font-family: "Aleo", sans-serif
+	font-family: "Aleo", sans-serif
+	.speedometer
+		height: 150px
+		width: 300px
+		overflow: hidden
+		position: relative
+		&::before
+			border-left: 150px solid white
+			border-top: 10px solid transparent
+ 			border-right: 150px solid transparent
+			position: absolute
+			content: " "
+			bottom: 0
+			z-index: 2
+		&::after
+			border-right: 150px solid white
+			border-top: 10px solid transparent
+ 			border-left: 150px solid transparent
+			position: absolute
+			content: " "
+			bottom: 0
+			right: 0
+			z-index: 2
+		.velocimeter
+			background-image: linear-gradient(to right, rgba(65, 172, 93, 0.5), rgba(65, 172, 93, 1));
+			border-radius: 999px
+			width: 300px
+			height: 300px
+			position: relative
+			.pointer
+				border: 2px solid black
+				border-radius: 99px
+				width: 120px
+				position: absolute
+				top: 48%
+				right: 50%
+				transition: transform 400ms
+				transform: rotate(75deg)
+				transform-origin: center right
+			&:before
+				width: 180px
+				height: 180px
+				position: absolute
+				content: " "
+				top: calc(50% - 90px)
+				right: calc(50% - 90px)
+				border-radius: 999px
+				background-color: white
+			&:after
+				width: 300px
+				height: 150px
+				position: absolute
+				content: " "
+				top: 50%
+				background-color: white
