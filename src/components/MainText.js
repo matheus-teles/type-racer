@@ -9,7 +9,7 @@ class MainText extends Component {
 		document.getElementById("scrollable-content").scrollTop = top - 100
 	}
 	nextWord() {
-		if(this.props.sentence.length == 0) return
+		if(this.props.sentence.length === 0) return
 		const letters = this.props.sentence[0].split("")
 		const inputs = this.props.wordInput.split("")
 		const matched = []

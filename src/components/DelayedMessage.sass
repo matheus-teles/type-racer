@@ -1,0 +1,14 @@
+@keyframes flashing
+  50% { opacity: 0 }
+.DelayedMessage
+  .flashing-text
+    position: relative
+    &:after
+      position: absolute
+      right: -4px
+      top: -4px
+      bottom: 0
+      width: 3px
+      background-color: black
+      content: " "
+      animation: flashing 1s linear infinite

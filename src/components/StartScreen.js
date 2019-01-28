@@ -1,18 +1,24 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { startGame } from "../redux/actions";
+import { startCountdown } from "../redux/actions";
+import DelayedMessage from './DelayedMessage';
 
 import './StartScreen.sass';
+
+const DESCRIPTION = "Ao iniciar, uma frase aleatória aparece, e seu objetivo é digitá-la o mais rápido possível."
 
 class StartScreen extends React.Component {
 
 	handleButtonClick = () => {
-		this.props.startGame();
+		this.props.startCountdown();
 	}
 	render() {
 		return (
 			<div className="StartScreen">
-				<button type="button" className="btn btn-success" onClick={this.handleButtonClick}>START</button>
+				<div className="game-description">
+					<DelayedMessage message={DESCRIPTION}/>
+					<button type="button" className="btn btn-success" onClick={this.handleButtonClick}>START</button>
+				</div>
 			</div>
 		)
 	}
@@ -20,5 +26,5 @@ class StartScreen extends React.Component {
 
 export default connect(
 	null,
-	{ startGame }
+	{ startCountdown }
 )(StartScreen)

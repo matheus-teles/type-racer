@@ -1,4 +1,4 @@
-import { START_GAME, CHECK_INPUT, SET_SENTENCE } from "../actionTypes";
+import { START_GAME, CHECK_INPUT, SET_SENTENCE, START_COUNTDOWN } from "../actionTypes";
 
 const initialState = {
   sentence: "",
@@ -10,6 +10,13 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case START_COUNTDOWN: {
+      const { current_screen } = action.payload;
+      return {
+        ...state,
+        current_screen
+      };
+    }
     case START_GAME: {
       const { started_at, current_screen } = action.payload;
       return {
