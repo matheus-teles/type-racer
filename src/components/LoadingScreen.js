@@ -27,11 +27,9 @@ class LoadingScreen extends Component {
   render() {
     return (
       <div className="LoadingScreen">
-        <div className="container">
-          <MainText  />
-          <div id="countdown" className="countdown">
-            <h1>{this.state.countdown}</h1>
-          </div>
+        <MainText  />
+        <div id="countdown" className="countdown">
+          <h1>{this.state.countdown}</h1>
         </div>
       </div>
     );

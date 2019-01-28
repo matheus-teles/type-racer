@@ -17,7 +17,7 @@ class StartScreen extends React.Component {
 			<div className="StartScreen">
 				<div className="game-description">
 					<DelayedMessage message={DESCRIPTION}/>
-					<button type="button" className="btn btn-success" onClick={this.handleButtonClick}>START</button>
+					<button type="button" className="btn" onClick={this.handleButtonClick}>DIGITAR</button>
 				</div>
 			</div>
 		)

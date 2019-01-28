@@ -25,7 +25,7 @@ class DelayedMessage extends React.Component {
 		return (
 			<div className="DelayedMessage">
 				<h1>
-          <span className="flashing-text">{this.state.presentedMessage}</span>
+        {this.state.presentedMessage}<span className="flashing-text"></span>
 				</h1>
 			</div>
 		)
