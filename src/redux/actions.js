@@ -19,7 +19,7 @@ export const playAgain = () => ({
   type: PLAY_AGAIN,
   payload: {
     ended_at: Date.now(),
-    current_screen: 3
+    current_screen: 1
   }
 });
 
