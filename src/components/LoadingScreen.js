@@ -21,7 +21,6 @@ class LoadingScreen extends Component {
   }
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000)
-    // document.getElementById("countdown").style.opacity = 0.2 * this.state.countdown
   }
 
   render() {

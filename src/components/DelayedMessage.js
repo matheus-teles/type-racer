@@ -6,7 +6,8 @@ import './DelayedMessage.sass'
 class DelayedMessage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { presentedMessage: "" }
+		this.state = { presentedMessage: "" }
+		this.timeouts = []
   }
 
 	componentDidMount() {
@@ -14,12 +15,20 @@ class DelayedMessage extends React.Component {
 			this.setDelay(letter, index)
 		});
 	}
+
+	compo
+
+	componentWillUnmount() {
+		this.timeouts.forEach(timeout => {
+			clearTimeout(timeout)
+		})
+	}
 	setDelay(letter, index) {
-    setTimeout(() => {
+    this.timeouts.push(setTimeout(() => {
       this.setState((state, props) => ({
         presentedMessage: state.presentedMessage + letter
       }));
-    }, 100 * index + 1)
+    }, 100 * index + 1))
 	}
 	render() {
 		return (
