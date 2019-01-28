@@ -4,18 +4,7 @@ import { connect } from "react-redux";
 import './Timer.sass'
 
 class Timer extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {now: Date.now()}
-	}
-	tick() {
-		this.setState({
-			now: Date.now()
-		})
-	}
-	componentDidMount() {
-		this.interval = setInterval(() => this.tick(), 1000)
-	}
+
 	render() {
 		const wpm = Math.ceil(60 * this.props.wordsMatched.length / ((this.state.now - this.props.started_at) / 1000))
 		function velocimeter(wpm) {
@@ -28,12 +17,11 @@ class Timer extends Component {
 		}
 		return (
 			<div className="Timer">
+				{this.props.started_at &&
+					<h1>{wpm} Wpm</h1>
+				}
 				<div className="speedometer">
 					<div className="velocimeter">
-						<div className="display-value">
-							<span className="speed">{wpm}</span>
-							<span>WPM</span>
-						</div>
 						<div className="pointer" style={divStyle}></div>
 					</div>
 				</div>

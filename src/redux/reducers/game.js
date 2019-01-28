@@ -1,11 +1,12 @@
-import { START_GAME, CHECK_INPUT, SET_SENTENCE, START_COUNTDOWN } from "../actionTypes";
+import { START_GAME, SET_SENTENCE, START_COUNTDOWN, GAME_ENDED, PLAY_AGAIN, INPUT_MATCH, INPUT_DONT_MATCH } from "../actionTypes";
 
 const initialState = {
   sentence: "",
   wordsMatched: [],
   wordInput: "",
   started_at: null,
-  current_screen: 0
+  current_screen: 0,
+  ended_at: null
 };
 
 export default function (state = initialState, action) {
@@ -25,28 +26,31 @@ export default function (state = initialState, action) {
         current_screen
       };
     }
-    case CHECK_INPUT: {
+    case INPUT_MATCH: {
       const { wordInput } = action.payload;
-      if (state.sentence.length === 1 && state.sentence[0] === wordInput) {
-        return {
-          ...state,
-          sentence: state.sentence.slice(1),
-          wordsMatched: [...state.wordsMatched, wordInput],
-          wordInput: ""
-        }
-      }
-      if (state.sentence[0] + " " === wordInput) {
-        return {
-          ...state,
-          sentence: state.sentence.slice(1),
-          wordsMatched: [...state.wordsMatched, wordInput],
-          wordInput: ""
-        };
-      }
+      return {
+        ...state,
+        sentence: state.sentence.slice(1),
+        wordsMatched: [...state.wordsMatched, wordInput],
+        wordInput: ""
+      };
+    }
+    case INPUT_DONT_MATCH: {
+      const { wordInput } = action.payload;
       return {
         ...state,
         wordInput
       };
+    }
+    case GAME_ENDED: {
+      const { wordInput, ended_at } = action.payload;
+      return {
+        ...state,
+        sentence: state.sentence.slice(1),
+        wordsMatched: [...state.wordsMatched, wordInput],
+        wordInput: "",
+        ended_at: ended_at
+      }
     }
     case SET_SENTENCE: {
       const { sentence } = action.payload;

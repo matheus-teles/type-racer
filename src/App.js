@@ -35,7 +35,8 @@ class App extends Component {
     //       });
     //     }
     //   )
-    this.props.setSentence(SENTENCES[Math.floor(Math.random() * 10)])
+    this.props.setSentence("a")
+    // this.props.setSentence(SENTENCES[Math.floor(Math.random() * 10)])
   }
 
   render() {

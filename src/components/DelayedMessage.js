@@ -28,13 +28,13 @@ class DelayedMessage extends React.Component {
       this.setState((state, props) => ({
         presentedMessage: state.presentedMessage + letter
       }));
-    }, 100 * index + 1))
+    }, 80 * index + 1))
 	}
 	render() {
 		return (
 			<div className="DelayedMessage">
 				<h1>
-        {this.state.presentedMessage}<span className="flashing-text"></span>
+        	{this.state.presentedMessage}<span className="flashing-text"></span>
 				</h1>
 			</div>
 		)
