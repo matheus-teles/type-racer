@@ -28,7 +28,7 @@ class DelayedMessage extends React.Component {
       this.setState((state, props) => ({
         presentedMessage: state.presentedMessage + letter
       }));
-    }, 80 * index + 1))
+    }, 40 * index + 1))
 	}
 	render() {
 		return (
