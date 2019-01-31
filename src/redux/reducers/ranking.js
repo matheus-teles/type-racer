@@ -1,6 +1,6 @@
-import { FETCH_RANKING_REQUEST, FETCH_RANKING_SUCCESS, FETCH_ADD_RANK_REQUEST, FETCH_ADD_RANK_SUCCESS } from "../actionTypes"
+import { FETCH_RANKING_REQUEST, FETCH_RANKING_SUCCESS, FETCH_ADD_RANK_REQUEST, FETCH_ADD_RANK_SUCCESS, RESET_CURRENT_SCORE } from "../actionTypes"
 
-export default function (state = { leaderboard: [], isFetching: false, isFetchingAdd: false}, action) {
+export default function (state = { leaderboard: [], isFetching: false, isFetchingAdd: false, currentRank: null }, action) {
   switch(action.type) {
     case FETCH_RANKING_REQUEST: {
       return {
@@ -24,6 +24,14 @@ export default function (state = { leaderboard: [], isFetching: false, isFetchin
     case FETCH_ADD_RANK_SUCCESS: {
       return {
         ...state,
+        currentRank: action.payload.currentRank,
+        isFetchingAdd: false
+      }
+    }
+    case RESET_CURRENT_SCORE: {
+      return {
+        ...state,
+        currentRank: null,
         isFetchingAdd: false
       }
     }

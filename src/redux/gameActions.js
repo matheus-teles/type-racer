@@ -1,5 +1,6 @@
 import { START_GAME, FETCH_SENTENCE_SUCCESS, END_GAME, RESET_GAME, INPUT_MATCH, INPUT_DONT_MATCH, FETCH_SENTENCE_REQUEST, CHANGE_SCREEN } from "./actionTypes";
 import { SENTENCES, START_SCREEN } from '../shared/constants'
+import { resetCurrentScore } from "../redux/rankingActions";
 
 export const checkInput = (wordInput) => {
   return (dispatch, getState) => {
@@ -50,7 +51,7 @@ export const fetchSentenceRequest = () => ({
 export const fetchSentence = () => {
   return (dispatch) => {
     dispatch(fetchSentenceRequest())
-    return fetch("http://localhost:3001/lerolero")
+    return fetch("https://type-racer-api.herokuapp.com/lerolero")
             .then(res => res.json())
             .then((result) => { dispatch(fetchSentenceSuccess(result.text))},
             (error) => { dispatch(fetchSentenceSuccess(SENTENCES[Math.floor(Math.random() * 10)]))})
@@ -64,12 +65,18 @@ export const changeScreen = (current_screen) => ({
   }
 })
 
-export const startGame = () => ({
-  type: START_GAME,
-  payload: {
-    started_at: Date.now()
+export const startGame = () => {
+  return (dispatch) => {
+    dispatch(resetCurrentScore())
+    const action = {
+      type: START_GAME,
+      payload: {
+        started_at: Date.now()
+      }
+    }
+    dispatch(action)
   }
-})
+}
 
 export const playAgain = () => {
   return (dispatch) => {
