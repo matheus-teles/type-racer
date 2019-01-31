@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { checkInput } from "../redux/actions";
+import { checkInput } from "../redux/gameActions";
 
 import './WordsInput.sass';
 
@@ -11,7 +11,7 @@ class WordsInput extends Component {
     }
 
     render() {
-        const wordInput = this.props.wordInput
+        const wordInput = this.props.game.wordInput
         return (
         <div className="WordsInput">
             <input
@@ -26,7 +26,7 @@ class WordsInput extends Component {
 }
 
 function mapStateToProps(state) {
-    return { ...state.game }
+    return { ...state }
   }
 
 export default connect(

@@ -1,29 +1,21 @@
-import { START_GAME, SET_SENTENCE, START_COUNTDOWN, GAME_ENDED, PLAY_AGAIN, INPUT_MATCH, INPUT_DONT_MATCH } from "../actionTypes";
+import { START_GAME, FETCH_SENTENCE_SUCCESS, END_GAME, RESET_GAME, INPUT_MATCH, INPUT_DONT_MATCH, FETCH_SENTENCE_REQUEST, CHANGE_SCREEN } from "../actionTypes";
 
 const initialState = {
-  sentence: "",
-  wordsMatched: [],
-  wordInput: "",
-  started_at: null,
-  current_screen: 0,
-  ended_at: null
+    sentence: "",
+    wordsMatched: [],
+    wordInput: "",
+    started_at: null,
+    ended_at: null,
+    isFetching: false
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case START_COUNTDOWN: {
-      const { current_screen } = action.payload;
-      return {
-        ...state,
-        current_screen
-      };
-    }
     case START_GAME: {
-      const { started_at, current_screen } = action.payload;
+      const { started_at } = action.payload;
       return {
         ...state,
-        started_at,
-        current_screen
+        started_at
       };
     }
     case INPUT_MATCH: {
@@ -42,21 +34,43 @@ export default function (state = initialState, action) {
         wordInput
       };
     }
-    case GAME_ENDED: {
-      const { wordInput, ended_at } = action.payload;
+    case END_GAME: {
+      const { ended_at } = action.payload;
       return {
         ...state,
-        sentence: state.sentence.slice(1),
-        wordsMatched: [...state.wordsMatched, wordInput],
-        wordInput: "",
-        ended_at: ended_at
+        ended_at
       }
     }
-    case SET_SENTENCE: {
+    case FETCH_SENTENCE_SUCCESS: {
       const { sentence } = action.payload;
       return {
         ...state,
+        isFetching: false,
         sentence
+      }
+    }
+    case CHANGE_SCREEN: {
+      const { current_screen } = action.payload;
+      return {
+        ...state,
+        current_screen
+      } 
+    }
+    case FETCH_SENTENCE_REQUEST: {
+      return {
+        ...state,
+        isFetching: true
+      }
+    }
+    case RESET_GAME: {
+      return {
+        ...state,
+        sentence: "",
+        wordsMatched: [],
+        wordInput: "",
+        started_at: null,
+        ended_at: null,
+        isFetching: false
       }
     }
     default:

@@ -25,9 +25,27 @@
   .end-modal
     position: fixed
     top: 40px
-    width: 300px
-    background-color: white
+    min-width: 380px
+    width: 80%
+    max-width: 800px
+    background: linear-gradient(0deg, rgba(255,255,255, 0.8) 0%, #fff 50%, #fff 50%, rgba(255,255,255, 0.8) 100%)
     margin: auto
     left: 0
     right: 0
-
+    font-family: 'Aleo', serif
+    .end-modal-body
+      max-width: 500px
+      margin: 0 auto
+      form
+        margin-top: 40px
+        margin-bottom: 100px
+        input[type="text"]
+          width: 100%
+          outline: 0 solid transparent
+          border-color: transparent
+          font-size: 1.5em
+          border-bottom: 3px solid black
+          margin-bottom: 5px
+        [type="submit"]
+      button
+        font-size: 1.5rem

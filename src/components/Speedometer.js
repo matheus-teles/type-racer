@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux";
 
 import './Speedometer.sass'
 
@@ -30,8 +29,4 @@ class Speedometer extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return { ...state.game }
-}
-
-export default connect(mapStateToProps)(Speedometer);
+export default Speedometer;

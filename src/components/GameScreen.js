@@ -4,8 +4,13 @@ import MainText from './MainText.js';
 import Timer from './Timer.js';
 import EndModal from './EndModal.js';
 import { connect } from "react-redux";
+import { startGame } from "../redux/gameActions";
 
 class GameScreen extends Component {
+
+  componentDidMount() {
+    this.props.startGame()
+  }
 
   render() {
     return (
@@ -13,7 +18,7 @@ class GameScreen extends Component {
         <MainText />
         <WordsInput />
         <Timer />
-        {this.props.ended_at &&
+        {this.props.game.ended_at &&
         <EndModal />}
       </div>
     );
@@ -21,7 +26,10 @@ class GameScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return { ...state.game }
+	return { ...state }
 }
 
-export default connect(mapStateToProps)(GameScreen);
+export default connect(
+  mapStateToProps,
+  { startGame }
+  )(GameScreen);

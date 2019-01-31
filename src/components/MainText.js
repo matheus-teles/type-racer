@@ -9,9 +9,9 @@ class MainText extends Component {
 		document.getElementById("scrollable-content").scrollTop = top - 100
 	}
 	nextWord() {
-		if(this.props.sentence.length === 0) return
-		const letters = this.props.sentence[0].split("")
-		const inputs = this.props.wordInput.split("")
+		if(this.props.game.sentence.length === 0) return
+		const letters = this.props.game.sentence[0].split("")
+		const inputs = this.props.game.wordInput.split("")
 		const matched = []
 		let unmatched = ""
 		let i = 0
@@ -31,10 +31,10 @@ class MainText extends Component {
 					 </span>
 	}
 	render() {
-		const wordsMatchedList = this.props.wordsMatched.map((word, index) =>
+		const wordsMatchedList = this.props.game.wordsMatched.map((word, index) =>
 			<span key={index} className="matched">{word}</span>
 		)
-		const afterNextWord = this.props.sentence.slice(1).join(" ");
+		const afterNextWord = this.props.game.sentence.slice(1).join(" ");
 
 		return (
 			<div className="MainText">
@@ -49,7 +49,7 @@ class MainText extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return { ...state.game }
+	return { ...state }
 }
 
 export default connect(mapStateToProps)(MainText);

@@ -5,26 +5,31 @@ import Speedometer from "./Speedometer"
 import './Timer.sass'
 
 class Timer extends Component {
+
 	constructor(props) {
 		super(props);
-		this.state = {now: Date.now()}
+		this.state = {current_end: Date.now()}
 	}
+
 	tick() {
-		this.setState({
-			now: Date.now()
-		})
-		if(this.props.ended_at) { 
+		if(this.props.game.ended_at) { 
 			clearInterval(this.interval)
 			this.setState({
-				now: this.props.ended_at
+				current_end: this.props.game.ended_at
+			})
+		} else {
+			this.setState({
+				current_end: Date.now()
 			})
 		}
 	}
+
 	componentDidMount() {
 		this.interval = setInterval(() => this.tick(), 1000)
 	}
+
 	render() {
-		const wpm = Math.floor(60 * this.props.wordsMatched.length / ((this.state.now - this.props.started_at) / 1000))
+		const wpm = Math.floor(60 * this.props.game.wordsMatched.length / ((this.state.current_end - this.props.game.started_at) / 1000))
 		return (
 			<div className="Timer">
 				<Speedometer min={4} max={100} value={wpm} />
@@ -34,7 +39,7 @@ class Timer extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return { ...state.game }
+	return { ...state }
 }
 
 export default connect(mapStateToProps)(Timer);

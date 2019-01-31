@@ -1,26 +1,27 @@
 .Speedometer
-  font-family: "Aleo", sans-serif;
-  .speedometer
-    height: 150px
-    width: 300px
-    overflow: hidden
-    position: relative
-    &::before
-      border-left: 150px solid white
-      border-top: 10px solid transparent
-      position: absolute
-      content: " "
-      bottom: 0
-      z-index: 2
-      left: 0
-    &::after
-      border-right: 150px solid white
-      border-top: 10px solid transparent
-      position: absolute
-      content: " "
-      bottom: 0
-      right: 0
-      z-index: 2
+	font-family: "Aleo", sans-serif;
+	height: 150px
+	width: 300px
+	overflow: hidden
+	margin: 0 auto
+	position: relative
+	.speedometer
+		&::before
+			border-left: 150px solid white
+			border-top: 10px solid transparent
+			position: absolute
+			content: " "
+			bottom: 0
+			z-index: 2
+			left: 0
+		&::after
+			border-right: 150px solid white
+			border-top: 10px solid transparent
+			position: absolute
+			content: " "
+			bottom: 0
+			right: 0
+			z-index: 2
 		.velocimeter
 			background-image: linear-gradient(to right, rgba(65, 172, 93, 0.5), rgba(65, 172, 93, 1));
 			border-radius: 999px

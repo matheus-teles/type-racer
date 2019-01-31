@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import MainText from './MainText.js'
-import { startGame } from "../redux/actions";
+import { changeScreen } from "../redux/gameActions";
 import './LoadingScreen.sass'
+import { GAME_SCREEN } from '../shared/constants'
 
 class LoadingScreen extends Component {
   constructor(props) {
@@ -11,11 +12,11 @@ class LoadingScreen extends Component {
   }
 
   tick() {
-    this.setState((state, props) => ({
+    this.setState((state) => ({
       countdown: state.countdown - 1
     }))
     if(this.state.countdown === 0) {
-      this.props.startGame()
+      this.props.changeScreen(GAME_SCREEN)
       clearInterval(this.interval)
     }
   }
@@ -38,5 +39,5 @@ class LoadingScreen extends Component {
 
 export default connect(
 	null,
-	{ startGame }
+	{ changeScreen }
 )(LoadingScreen)
